@@ -6,4 +6,4 @@ function AccountsLayout() {
   )
 }
 
-export default AccountsLayout
+export default AccountsLayout;

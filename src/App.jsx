@@ -5,19 +5,29 @@ import {  checkUser } from './services/apiUsers';
 import TransactionLayout from "./transactions/TransactionLayout";
 import NavBar from "./ui/NavBar";
 import Footer from "./ui/Footer";
+import { addCategory } from "./services/apiCategories";
 
 function App() {
+  // Query object to get current user data
+  // const queryUser= useQuery({
+  //   queryKey: ['uid'],
+  //   queryFn: ()=>checkUser('aryawwn27@gmail.com')
+  // });
 
-  const queryUser= useQuery({
-    queryKey: ['uid'],
-    queryFn: ()=>checkUser('aryawwn27@gmail.com')
+  // let user = queryUser.data ? queryUser.data : null;
+  // if (user != null) {
+  //   user = { ...user[0] };
+  //   console.log(user);
+  // }
+  
+  const queryCategory= useQuery({
+    queryKey: ['cid'],
+    queryFn: ()=>addCategory('Clothing')
   }); 
 
-  let user = queryUser.data ? queryUser.data : null;
-  if (user != null) {
-    user = { ...user[0] };
-    console.log(user);
-  }
+  let category = queryCategory.data ? queryCategory.data : null;
+  console.log(category);
+
   return (
     <div>
       <NavBar/>

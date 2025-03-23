@@ -8,3 +8,20 @@ export async function getCategories(){
 
   return data;
 }
+
+export async function addCategory(cat_name) {
+  const { data: extData } = await supabase.from("categories").select("*").eq('cname', cat_name);
+  console.log(extData);
+  // Check if the given category exists in table
+  if (extData == undefined) {
+    throw new Error("Category already exists");
+  }
+  const { data, error } = await supabase.from('categories').insert([{ cname: cat_name }]);
+
+  if (error) {
+    console.log(error);
+  }
+  console.log("Added category");
+  console.log(data);
+  return data;
+}
