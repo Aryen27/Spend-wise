@@ -6,7 +6,7 @@ export async function getUsers(){
     console.log(error);
   }
 
-  return data
+  return data;
 }
 
 export async function checkUser(email){
@@ -14,5 +14,5 @@ export async function checkUser(email){
   if (error) {
     console.log(error);
   }
-  return data
+  return data;
 }
