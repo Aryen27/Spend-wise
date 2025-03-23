@@ -1,35 +1,43 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { createClient } from "@supabase/supabase-js";
 
 const dbKey = import.meta.env.VITE_DB_KEY;
-const supabaseURL = createClient("https://xbpvzcaibzouvbsajtny.supabaseURL.co", dbKey);
+const supabaseUrl = "https://xbpvzcaibzouvbsajtny.supabase.co";
+const supabase = createClient(supabaseUrl, dbKey);
 
-const DBContext = createContext();
+const DBContext = createContext(null);
 
 function DBProvider({ children }) {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState();
 
   useEffect(() => {
     async function getUsers() {
       try {
-        const { data } = await supabaseURL.from("users").select(); //Table name
-        console.log(data);
+        const { data } = await supabase.from("users").select(); //Table name
         setUsers(data);
       } catch (error) {
         console.log(error);
       }
     }
+
+    getUsers();
   }, []);
 
   
   return (
-    <DBContext.Provider value={
-    users
-  }>
+    <DBContext.Provider value={{ users }}>
       {children}
     </DBContext.Provider>
   )
 }
 
-export {DBProvider};
+function useUsers() {
+  const context = useContext(DBContext);
+  console.log(context);
+  if (!context)
+    throw new Error('useUsers used outside the provider');
+  return context;
+}
+
+export {DBProvider, useUsers};
 
