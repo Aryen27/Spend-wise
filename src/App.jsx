@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import {  checkUser } from './services/apiUsers';
 import TransactionLayout from "./transactions/TransactionLayout";
+import NavBar from "./ui/NavBar";
+import Footer from "./ui/Footer";
 
 function App() {
 
@@ -17,9 +19,11 @@ function App() {
     console.log(user);
   }
   return (
-    <>
-        <TransactionLayout/>
-    </>
+    <div>
+      <NavBar/>
+      <TransactionLayout />
+      <Footer/>
+    </div>
   );
 }
 export default App;
