@@ -1,35 +1,24 @@
 import { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
-import { useUsers } from "./services/usersContext";
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
-import supabase from "./services/supabase";
+import { useQuery } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
+import {  checkUser } from './services/apiUsers';
 import TransactionLayout from "./transactions/TransactionLayout";
-// import DashPage from "./dashboard/DashPage";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1800*1000,
-    }
-  }
-});
 
 function App() {
-  const { users } = useUsers();
-  console.log(users);
 
+  const queryUser= useQuery({
+    queryKey: ['uid'],
+    queryFn: ()=>checkUser('aryawwn27@gmail.com')
+  }); 
+
+  let user = queryUser.data ? queryUser.data : null;
+  if (user != null) {
+    user = { ...user[0] };
+    console.log(user);
+  }
   return (
     <>
-      {/* <ul>
-        {users.map((user) => (
-          <li key={user.name}>{user.name} , {user.email }</li>
-        ))}
-      </ul> */}
-      <QueryClientProvider client={queryClient}>
         <TransactionLayout/>
-      </QueryClientProvider>
     </>
   );
 }
