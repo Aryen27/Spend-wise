@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useUsers } from "./contexts/dbContext";
-import DashPage from "./dashboard/DashPage";
+// import DashPage from "./dashboard/DashPage";
 
 function App() {
   const { users } = useUsers();
@@ -13,7 +13,6 @@ function App() {
           <li key={user.name}>{user.name} , {user.email }</li>
         ))}
       </ul> */}
-      <DashPage/>
       </>
     );
 }

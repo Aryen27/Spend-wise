@@ -3,11 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "exports": {
-    "./postcss.config.js": {
-      "default": "./postcss.config.cjs"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
