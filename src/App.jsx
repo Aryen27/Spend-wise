@@ -1,27 +1,19 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-
-const dbKey = import.meta.env.VITE_DB_KEY;
-const supabase = createClient("https://xbpvzcaibzouvbsajtny.supabase.co", dbKey);
+import { DBProvider } from "./contexts/dbContext";
 
 function App() {
-  const [instruments, setInstruments] = useState([]);
-  
-  useEffect(() => {
-      getInstruments();
-  }, []);
 
-  async function getInstruments() {
-    const { data } = await supabase.from("users").select(); //Table name
-    console.log(data);
-    setInstruments(data);
-  }
-    return (
+  return (
+    <>
+      <DBProvider>
       <ul>
-        {instruments.map((instrument) => (
-          <li key={instrument.name}>{instrument.name}</li>
+        {users.map((user) => (
+          <li key={user.name}>{instrument.name}</li>
         ))}
       </ul>
+      </DBProvider>
+      </>
     );
 }
-export default App
+export default App;
