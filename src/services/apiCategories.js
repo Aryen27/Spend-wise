@@ -25,3 +25,12 @@ export async function addCategory(cat_name) {
   console.log(data);
   return data;
 }
+
+export async function deleteCategory(cat_name) {
+  const { data: extData } = await supabase.from("categories").select("*").eq('cname', cat_name);
+  if (!extData[0]) {
+    throw new Error('The following category doesn\'t exist!');
+  }
+  const response = await supabase.from("categories").delete().eq('cname', cat_name);
+  return response;
+}
