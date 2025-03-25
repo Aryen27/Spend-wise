@@ -6,7 +6,7 @@ import TransactionLayout from "./transactions/TransactionLayout";
 import NavBar from "./ui/NavBar";
 import Footer from "./ui/Footer";
 import { addCategory, deleteCategory } from "./services/serviceCategories";
-import { getAccounts, addAccount } from "./services/serviceAccounts";
+import { getAccounts, addAccount, deleteAccount } from "./services/serviceAccounts";
 
 function App() {
   /*
@@ -25,7 +25,7 @@ function App() {
   */
   const queryCategory= useQuery({
     queryKey: ['account_id'],
-    queryFn: ()=>addAccount('Savings-Account', 'cash' , 'Axis', 20000)
+    queryFn: ()=>deleteAccount('Savings-Account', 'cash' , 'Axis')
   }); 
 
   let category = queryCategory.data ? queryCategory.data : null;
