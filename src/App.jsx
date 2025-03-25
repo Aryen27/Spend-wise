@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import {  checkUser } from './services/apiUsers';
+import {  checkUser } from './services/serviceUsers';
 import TransactionLayout from "./transactions/TransactionLayout";
 import NavBar from "./ui/NavBar";
 import Footer from "./ui/Footer";
-import { addCategory, deleteCategory } from "./services/apiCategories";
+import { addCategory, deleteCategory } from "./services/serviceCategories";
+import { getAccounts, addAccount } from "./services/serviceAccounts";
 
 function App() {
   /*
@@ -18,13 +19,13 @@ function App() {
 
   let user = queryUser.data ? queryUser.data : null;
   if (user != null) {
-    user = { ...user[0] };
+    user = { ...user[0] }; 
     console.log(user);
   }
   */
   const queryCategory= useQuery({
-    queryKey: ['cid'],
-    queryFn: ()=>deleteCategory('Clothing')
+    queryKey: ['account_id'],
+    queryFn: ()=>addAccount('Savings-Account', 'cash' , 'Axis', 20000)
   }); 
 
   let category = queryCategory.data ? queryCategory.data : null;

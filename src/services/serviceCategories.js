@@ -5,7 +5,6 @@ export async function getCategories(){
   if (error) {
     console.log(error);
   }
-
   return data;
 }
 
