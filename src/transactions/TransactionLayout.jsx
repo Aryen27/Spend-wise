@@ -5,6 +5,7 @@ import { getTransactions } from "../services/serviceTransactions";
 
 
 function TransactionLayout() {
+  /*
   const query= useQuery({
     queryKey: ['tid'],
     queryFn: getTransactions
@@ -15,7 +16,7 @@ function TransactionLayout() {
   if (transactions == null){
     console.log("No transactions found");
   }
-
+  */
   return (
     <div>TransactionLayout</div>
   )

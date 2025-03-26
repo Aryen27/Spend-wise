@@ -19,7 +19,7 @@ export async function addAccount(aname, accType, bank_name, amount) {
     throw new Error("There was trouble processing your request");
   }
   return {status:200, message: "Account added sucessfully"};
-}   
+}
 
 export async function deleteAccount(aname, accType, bank_name) {
   const { data: extData } = await supabase.from("accounts").select().match({ acc_name: aname, type: accType, bname: bank_name });
@@ -32,4 +32,11 @@ export async function deleteAccount(aname, accType, bank_name) {
   console.log(response);
   
   return {status:204, message: "Account deleted", data: response};
+}
+
+export async function updateAccount(acc_id, aname, accType, bank_name, amount) {
+  const { response } = await supabase.from("accounts").update({ acc_name: aname, type: accType, bname: bank_name, balance: amount }).eq('account_id', acc_id);
+  console.log(response);
+
+  return { message: response };
 }

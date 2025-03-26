@@ -6,7 +6,7 @@ import TransactionLayout from "./transactions/TransactionLayout";
 import NavBar from "./ui/NavBar";
 import Footer from "./ui/Footer";
 import { addCategory, deleteCategory } from "./services/serviceCategories";
-import { getAccounts, addAccount, deleteAccount } from "./services/serviceAccounts";
+import { getAccounts, addAccount, deleteAccount, updateAccount } from "./services/serviceAccounts";
 
 function App() {
   /*
@@ -22,14 +22,16 @@ function App() {
     user = { ...user[0] }; 
     console.log(user);
   }
+  
+  updateAccount(e25666f7-a66e-49ff-a9ed-97db9dbde0c9, 'Savings-Account', 'cash' , 'Axis', 40000)
   */
   const queryCategory= useQuery({
     queryKey: ['account_id'],
-    queryFn: ()=>deleteAccount('Savings-Account', 'cash' , 'Axis')
+    queryFn: ()=>updateAccount('e25666f7-a66e-49ff-a9ed-97db9dbde0c9', 'Savings-Account', 'cash' , 'Axis', 40000)
   }); 
 
-  let category = queryCategory.data ? queryCategory.data : null;
-  console.log(category);
+  // let category = queryCategory.data ? queryCategory.data : null;
+  console.log(queryCategory.data);
 
   return (
     <div>
